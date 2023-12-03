@@ -1,46 +1,46 @@
 ﻿
-string[] testInputs1 = [
-    "1abc2", "pqr3stu8vwx", "a1b2c3d4e5f", "treb7uchet"
-];
-string[] testInputs2 = [
-    "two1nine", "eightwothree", "abcone2threexyz", "xtwone3four",
-    "4nineeightseven2", "zoneight234", "7pqrstsixteen"
-];
-
-string[] calibInputs = File.ReadAllLines("../../../day1.txt");
-
-Console.WriteLine($"Day 1, Part 1 test output: {Day1.Sum1(testInputs1)}");
-Console.WriteLine($"Day 1, Part 1 real output: {Day1.Sum1(calibInputs)}");
-
-Console.WriteLine($"Day 1, Part 2 test output: {Day1.Sum2(testInputs2)}");
-Console.WriteLine($"Day 1, Part 2 real output: {Day1.Sum2(calibInputs)}");
-
-class Day1 {
-    public static int Sum1(string[] inputs) => inputs.Sum(str => {
-        var digits = str.Where(char.IsDigit);
-        return (digits.First() - '0') * 10 + (digits.Last() - '0');
-    });
-
-    static string[] numbers = [
-        "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+void RunDay1() {
+    string[] testInputs1 = [
+        "1abc2",
+        "pqr3stu8vwx",
+        "a1b2c3d4e5f",
+        "treb7uchet"
     ];
-    static bool IsDigitChar(char c, int num) => c == (char)('0' + num);
+    string[] testInputs2 = [
+        "two1nine",
+        "eightwothree",
+        "abcone2threexyz",
+        "xtwone3four",
+        "4nineeightseven2",
+        "zoneight234",
+        "7pqrstsixteen"
+    ];
 
-    public static int Sum2(string[] inputs) {
-        int FirstDigit(ReadOnlySpan<char> str) {
-            for (int i = 0; i < str.Length; ++i)
-                for (int num = 0; num < 10; ++num)
-                    if (IsDigitChar(str[i], num) || str[i..].StartsWith(numbers[num]))
-                        return num;
-            throw new();
-        }
-        int SecondDigit(ReadOnlySpan<char> str) {
-            for (int i = str.Length; i > 0; --i)
-                for (int num = 0; num < 10; ++num)
-                    if (IsDigitChar(str[i - 1], num) || str[0..i].EndsWith(numbers[num]))
-                        return num;
-            throw new();
-        }        
-        return inputs.Sum(str => FirstDigit(str) * 10 + SecondDigit(str));
-    }
+    string[] calibInputs = File.ReadAllLines("../../../day1.txt");
+
+    Console.WriteLine($"Day 1, Part 1 test output: {Day1.Sum1(testInputs1)}");
+    Console.WriteLine($"Day 1, Part 1 real output: {Day1.Sum1(calibInputs)}");
+
+    Console.WriteLine($"Day 1, Part 2 test output: {Day1.Sum2(testInputs2)}");
+    Console.WriteLine($"Day 1, Part 2 real output: {Day1.Sum2(calibInputs)}");
 }
+
+void RunDay2() {
+    string[] testInputs = [
+        "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
+        "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue",
+        "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red",
+        "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red",
+        "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green",
+    ];
+    string[] gameInputs = File.ReadAllLines("../../../day2.txt");
+
+    Console.WriteLine($"Day 2, Part 1 test output: {Day2.SumPossibleGames(testInputs)}");
+    Console.WriteLine($"Day 2, Part 1 real output: {Day2.SumPossibleGames(gameInputs)}");
+
+    Console.WriteLine($"Day 2, Part 2 test output: {Day2.SumOfPowers(testInputs)}");
+    Console.WriteLine($"Day 2, Part 2 real output: {Day2.SumOfPowers(gameInputs)}");
+}
+
+RunDay1();
+RunDay2();
