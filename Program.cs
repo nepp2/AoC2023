@@ -42,5 +42,27 @@ void RunDay2() {
     Console.WriteLine($"Day 2, Part 2 real output: {Day2.SumOfPowers(gameInputs)}");
 }
 
+void RunDay3() {
+    string[] testSchematic = [
+        "467..114..",
+        "...*......",
+        "..35..633.",
+        "......#...",
+        "617*......",
+        ".....+.58.",
+        "..592.....",
+        "......755.",
+        "...$.*....",
+        ".664.598..",
+    ];
+    string[] fullSchematic = File.ReadAllLines("../../../day3.txt");
+    Console.WriteLine($"Day 3, Part 1 test output: {Day3.SumPartNumbers(testSchematic)}");
+    Console.WriteLine($"Day 3, Part 1 real output: {Day3.SumPartNumbers(fullSchematic)}");
+
+    Console.WriteLine($"Day 3, Part 2 test output: {Day3.SumGearRatio(testSchematic)}");
+    Console.WriteLine($"Day 3, Part 2 real output: {Day3.SumGearRatio(fullSchematic)}");
+}
+
 RunDay1();
 RunDay2();
+RunDay3();
